@@ -853,7 +853,7 @@ struct VisitSavingSheet: View {
                             Text("\(estimatedOriginalPrice.formatted())원")
                         }
                         HStack {
-                            Text("짠테크맵 이용가")
+                            Text("짠테크 이용가")
                             Spacer()
                             Text("\(actualPrice.formatted())원")
                                 .foregroundStyle(Brand.price)
@@ -1037,7 +1037,7 @@ struct VisitSavingPreviewSheet: View {
                             Text("\(estimatedOriginalPrice.formatted())원")
                         }
                         HStack {
-                            Text("짠테크맵 이용가")
+                            Text("짠테크 이용가")
                             Spacer()
                             Text("\(actualPrice.formatted())원")
                                 .foregroundStyle(Brand.price)
@@ -1419,14 +1419,14 @@ struct GradeShareCardView: View {
         나는 지금 \(summary.challengeGrade) 등급
         절약으로 만든 자산 \(summary.currentSavingsText)
         1억까지 \(summary.remainingText)
-        #짠테크맵 #1억챌린지 #절약이자산이되는순간
+        #짠테크 #1억챌린지 #절약이자산이되는순간
         """
     }
 
     var body: some View {
         VStack(spacing: 18) {
             VStack(alignment: .leading, spacing: 16) {
-                Text("짠테크맵")
+                Text("짠테크")
                     .font(.caption.weight(.heavy))
                     .foregroundStyle(Color(hex: "#BFDBFE"))
 
@@ -1447,7 +1447,7 @@ struct GradeShareCardView: View {
                     .font(.headline.weight(.heavy))
                     .foregroundStyle(Color(hex: "#FDE68A"))
 
-                Text("#짠테크맵 #1억챌린지 #절약이자산이되는순간")
+                Text("#짠테크 #1억챌린지 #절약이자산이되는순간")
                     .font(.caption.weight(.bold))
                     .foregroundStyle(.white.opacity(0.86))
             }

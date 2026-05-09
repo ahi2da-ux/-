@@ -45,7 +45,7 @@ struct ContentView: View {
             NavigationStack {
                 V2EmptyView(
                     title: "청년",
-                    subtitle: "청년 정책, 주거, 금융 콘텐츠는 v2에서 만나요.",
+                    subtitle: "지원금, 주거, 금융 혜택으로 1억의 속도를 높이는 콘텐츠를 준비 중이에요.",
                     systemImage: "graduationcap.fill",
                     accent: Brand.indigo
                 )
@@ -59,7 +59,7 @@ struct ContentView: View {
             NavigationStack {
                 V2EmptyView(
                     title: "벼룩",
-                    subtitle: "5만원 이하 위치 기반 중고거래는 v2에서 준비 중이에요.",
+                    subtitle: "안 쓰는 물건을 현금 흐름으로 바꾸는 2030 자산형성 마켓을 준비 중이에요.",
                     systemImage: "bag.fill",
                     accent: Brand.amber
                 )
@@ -2965,7 +2965,7 @@ private struct ChallengeExploreEntryCard: View {
                     Text("1억 챌린지")
                         .font(.headline.weight(.heavy))
                         .foregroundStyle(Brand.gray900)
-                    Text("저렴한 장소를 이용할 때마다 절약액이 자산처럼 쌓여요.")
+                    Text("오늘 아낀 돈이 1억을 향한 자산 기록으로 쌓여요.")
                         .font(.caption)
                         .foregroundStyle(Brand.gray500)
                         .lineSpacing(2)
@@ -2983,7 +2983,7 @@ private struct ChallengeExploreEntryCard: View {
                     NavigationLink {
                         ChallengeView(session: session)
                     } label: {
-                        Text("내 기록 보기")
+                        Text("자산 기록 보기")
                             .font(.caption.weight(.heavy))
                             .foregroundStyle(.white)
                             .padding(.horizontal, 12)
@@ -4182,10 +4182,10 @@ private struct PlaceDetailHomePage: View {
                             .font(.headline.weight(.bold))
                             .foregroundStyle(Brand.primary)
                         VStack(alignment: .leading, spacing: 7) {
-                            Text("사용자 제보를 요약해 드립니다.")
+                            Text("오늘의 자산형성 포인트")
                                 .font(.subheadline.weight(.heavy))
                                 .foregroundStyle(Brand.gray900)
-                            Text("이 장소는 \(place.priceText)부터 시작하는 가성비 메뉴가 강점이에요. \(place.tip)")
+                            Text("이 장소는 \(place.priceText)부터 시작해 하루 지출을 낮추기 좋아요. 아낀 금액은 1억 챌린지에 자산처럼 기록할 수 있어요. \(place.tip)")
                                 .font(.subheadline)
                                 .foregroundStyle(Brand.gray700)
                                 .lineSpacing(3)
@@ -4243,7 +4243,7 @@ private struct PlaceDetailMenuPage: View {
                 }
 
                 DetailSection(title: "가격 제보 팁") {
-                    Text("메뉴판이나 영수증 사진을 올리면 가격 신뢰도가 올라가고, 검수 후 포인트가 지급됩니다.")
+                    Text("메뉴판이나 영수증 사진을 올리면 가격 신뢰도가 올라가고, 검수 후 포인트와 절약 기록의 기반 데이터가 더 탄탄해집니다.")
                         .font(.subheadline)
                         .foregroundStyle(Brand.gray700)
                         .lineSpacing(3)
@@ -4263,8 +4263,8 @@ private struct PlaceDetailReviewPage: View {
         ScrollView {
             VStack(spacing: 12) {
                 DetailSection(title: "방문자 리뷰") {
-                    ReviewSnippet(rank: 1, name: "mapo_saver", text: "\(place.priceText)에 이 정도면 점심값 방어 성공이에요. 양도 적당하고 혼밥하기 편했습니다.")
-                    ReviewSnippet(rank: 2, name: "짠테커 민지", text: "가격 제보 보고 갔는데 실제 가격도 같았어요. \(place.updatedText) 정보라 믿을 만합니다.")
+                    ReviewSnippet(rank: 1, name: "mapo_saver", text: "\(place.priceText)에 이 정도면 오늘 지출 방어 성공이에요. 아낀 금액을 챌린지에 기록하기 좋았습니다.")
+                    ReviewSnippet(rank: 2, name: "짠테커 민지", text: "가격 제보 보고 갔는데 실제 가격도 같았어요. \(place.updatedText) 정보라 자산 계획 세우기 좋습니다.")
                     ReviewSnippet(rank: 3, name: "오늘도 절약", text: place.tip)
                 }
 
@@ -4275,10 +4275,10 @@ private struct PlaceDetailReviewPage: View {
                             .frame(width: 82, height: 82)
                             .overlay(Text(place.icon).font(.largeTitle))
                         VStack(alignment: .leading, spacing: 5) {
-                            Text("서울 \(place.kind) 가성비 맛집으로 저장")
+                            Text("서울 \(place.kind) 절약 스팟으로 저장")
                                 .font(.headline.weight(.heavy))
                                 .foregroundStyle(Brand.gray900)
-                            Text("방문자 \(place.reviewCount)명이 남긴 가격과 메뉴 후기를 모았어요.")
+                            Text("방문자 \(place.reviewCount)명이 남긴 가격, 메뉴, 절약 후기를 모았어요.")
                                 .font(.caption)
                                 .foregroundStyle(Brand.gray500)
                                 .lineSpacing(2)
@@ -5276,9 +5276,6 @@ private struct V2EmptyView: View {
                     Text("짠테크")
                         .font(.headline.weight(.heavy))
                         .foregroundStyle(.white)
-                    Text("맵")
-                        .font(.headline.weight(.heavy))
-                        .foregroundStyle(.white.opacity(0.72))
                     Spacer()
                 }
                 Text(title)
@@ -5380,12 +5377,12 @@ private struct MonthlySavingsReportCard: View {
             }
 
             if !isSignedIn {
-                Text("로그인하면 방문 완료로 쌓인 절약액을 월별로 볼 수 있어요.")
+                Text("로그인하면 방문 완료로 쌓인 절약액을 월별 자산형성 리포트로 볼 수 있어요.")
                     .font(.caption)
                     .foregroundStyle(Brand.gray500)
                     .lineSpacing(2)
             } else if monthlyLogs.isEmpty {
-                Text("이번 달 절약 기록이 아직 없어요. 장소 상세에서 방문 완료를 눌러 첫 기록을 남겨보세요.")
+                Text("이번 달 절약 기록이 아직 없어요. 장소 상세에서 방문 완료를 눌러 첫 자산형성 기록을 남겨보세요.")
                     .font(.caption)
                     .foregroundStyle(Brand.gray500)
                     .lineSpacing(2)
@@ -8245,9 +8242,6 @@ private struct LogoText: View {
             Text("짠테크")
                 .font(.headline.weight(.heavy))
                 .foregroundStyle(.white)
-            Text("맵")
-                .font(.headline.weight(.heavy))
-                .foregroundStyle(Color(hex: "#7DD3FC"))
         }
     }
 }
