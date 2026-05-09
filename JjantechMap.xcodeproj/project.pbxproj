@@ -11,6 +11,8 @@
 		3A1E00030000000000000001 /* AppMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1E00040000000000000001 /* AppMain.swift */; };
 		3A1E00050000000000000001 /* NMapsMap in Frameworks */ = {isa = PBXBuildFile; productRef = 3A1E00060000000000000001 /* NMapsMap */; };
 		3A1E00220000000000000001 /* ChallengeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A1E00210000000000000001 /* ChallengeView.swift */; };
+		3A1E00320000000000000001 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A1E00300000000000000001 /* Assets.xcassets */; };
+		3A1E00330000000000000001 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A1E00310000000000000001 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		3A1E00070000000000000001 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = JjantechMapRunner/Info.plist; sourceTree = "<group>"; };
 		3A1E00080000000000000001 /* JjantechMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JjantechMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A1E00210000000000000001 /* ChallengeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JjantechMapRunner/ChallengeView.swift; sourceTree = "<group>"; };
+		3A1E00300000000000000001 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = JjantechMapRunner/Assets.xcassets; sourceTree = "<group>"; };
+		3A1E00310000000000000001 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = JjantechMapRunner/LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +43,8 @@
 				3A1E00020000000000000001 /* ContentView.swift */,
 				3A1E00040000000000000001 /* AppMain.swift */,
 				3A1E00210000000000000001 /* ChallengeView.swift */,
+				3A1E00300000000000000001 /* Assets.xcassets */,
+				3A1E00310000000000000001 /* LaunchScreen.storyboard */,
 				3A1E00070000000000000001 /* Info.plist */,
 				3A1E000B0000000000000001 /* Products */,
 			);
@@ -117,6 +123,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A1E00320000000000000001 /* Assets.xcassets in Resources */,
+				3A1E00330000000000000001 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,6 +259,7 @@
 		3A1E00150000000000000001 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
@@ -273,6 +282,7 @@
 		3A1E00160000000000000001 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";

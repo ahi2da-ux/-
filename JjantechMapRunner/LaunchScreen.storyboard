@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchLogo" translatesAutoresizingMaskIntoConstraints="NO" id="M3v-l8-TyQ">
+                                <rect key="frame" x="136.5" y="297" width="120" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="L6x-bh-1ax"/>
+                                    <constraint firstAttribute="height" constant="120" id="S8Q-KO-2eL"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="짠테크" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QZo-td-11V">
+                                <rect key="frame" x="127" y="449" width="139" height="47"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="38"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="절약부터 투자까지, 1억을 향해" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6c-w5-DXJ">
+                                <rect key="frame" x="75" y="512" width="243" height="22"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <color key="textColor" red="0.83921568627450982" green="0.89411764705882357" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BKG-Zq-nUp">
+                                <rect key="frame" x="126" y="563" width="141" height="8"/>
+                                <color key="backgroundColor" red="1" green="0.83921568627450982" blue="0.2627450980392157" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="8" id="Pnw-4e-SrA"/>
+                                    <constraint firstAttribute="width" constant="141" id="r9C-wU-gED"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
+                        <color key="backgroundColor" red="0.17647058823529413" green="0.35686274509803922" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="M3v-l8-TyQ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="2eY-Re-LkK"/>
+                            <constraint firstItem="M3v-l8-TyQ" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-120" id="U7H-oy-A3w"/>
+                            <constraint firstItem="QZo-td-11V" firstAttribute="top" secondItem="M3v-l8-TyQ" secondAttribute="bottom" constant="32" id="Afj-g2-yct"/>
+                            <constraint firstItem="QZo-td-11V" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="Oj2-z7-NnX"/>
+                            <constraint firstItem="k6c-w5-DXJ" firstAttribute="top" secondItem="QZo-td-11V" secondAttribute="bottom" constant="16" id="Gqu-lp-vsY"/>
+                            <constraint firstItem="k6c-w5-DXJ" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="rB9-MN-69c"/>
+                            <constraint firstItem="BKG-Zq-nUp" firstAttribute="top" secondItem="k6c-w5-DXJ" secondAttribute="bottom" constant="28" id="I1u-fK-qQB"/>
+                            <constraint firstItem="BKG-Zq-nUp" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="n2v-dN-lOr"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52" y="374"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="LaunchLogo" width="512" height="512"/>
+    </resources>
+</document>

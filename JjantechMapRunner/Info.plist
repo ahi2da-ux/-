@@ -49,8 +49,8 @@
     <string>가격 제보 시 영수증 또는 메뉴판 사진을 첨부하기 위해 사진을 불러옵니다.</string>
     <key>NSPhotoLibraryAddUsageDescription</key>
     <string>촬영한 인증 사진을 사진앱에 저장하기 위해 권한을 사용합니다.</string>
-    <key>UILaunchScreen</key>
-    <dict/>
+    <key>UILaunchStoryboardName</key>
+    <string>LaunchScreen</string>
     <key>UISupportedInterfaceOrientations</key>
     <array>
         <string>UIInterfaceOrientationPortrait</string>
