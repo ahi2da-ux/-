@@ -16,7 +16,7 @@ private enum AppEnvironment {
 
 struct ContentView: View {
     @Environment(\.scenePhase) private var scenePhase
-    @State private var selectedTab: MainTab = .map
+    @State private var selectedTab: MainTab = .home
     @StateObject private var placesViewModel = PlacesViewModel()
     @StateObject private var authManager = AuthManager()
     @StateObject private var favoritesViewModel = FavoritesViewModel()
@@ -25,50 +25,50 @@ struct ContentView: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             NavigationStack {
-                ExploreView()
+                HomeView(selectedTab: $selectedTab)
                     .toolbar(.hidden, for: .navigationBar)
             }
             .tabItem {
-                Label("탐색", systemImage: "magnifyingglass")
+                Label("홈", systemImage: "house.fill")
             }
-            .tag(MainTab.explore)
+            .tag(MainTab.home)
 
             NavigationStack {
-                MapExploreView()
+                SavingsView()
                     .toolbar(.hidden, for: .navigationBar)
             }
             .tabItem {
-                Label("지도", systemImage: "map.fill")
+                Label("절약", systemImage: "map.fill")
             }
-            .tag(MainTab.map)
+            .tag(MainTab.savings)
 
             NavigationStack {
                 V2EmptyView(
-                    title: "청년",
-                    subtitle: "지원금, 주거, 금융 혜택으로 1억의 속도를 높이는 콘텐츠를 준비 중이에요.",
-                    systemImage: "graduationcap.fill",
+                    title: "수입+",
+                    subtitle: "지원금, 정책, 부업, 리워드로 1억의 속도를 높이는 영역을 준비 중이에요.",
+                    systemImage: "plus.circle.fill",
                     accent: Brand.indigo
                 )
                 .toolbar(.hidden, for: .navigationBar)
             }
             .tabItem {
-                Label("청년", systemImage: "graduationcap.fill")
+                Label("수입+", systemImage: "plus.circle.fill")
             }
-            .tag(MainTab.youth)
+            .tag(MainTab.income)
 
             NavigationStack {
-                V2EmptyView(
-                    title: "벼룩",
-                    subtitle: "안 쓰는 물건을 현금 흐름으로 바꾸는 2030 자산형성 마켓을 준비 중이에요.",
-                    systemImage: "bag.fill",
-                    accent: Brand.amber
-                )
-                .toolbar(.hidden, for: .navigationBar)
+                if let session = authManager.session {
+                    ChallengeView(session: session)
+                        .toolbar(.hidden, for: .navigationBar)
+                } else {
+                    ChallengePreviewView()
+                        .toolbar(.hidden, for: .navigationBar)
+                }
             }
             .tabItem {
-                Label("벼룩", systemImage: "bag.fill")
+                Label("챌린지", systemImage: "trophy.fill")
             }
-            .tag(MainTab.flea)
+            .tag(MainTab.challenge)
 
             NavigationStack {
                 MyPageView()
@@ -2945,6 +2945,300 @@ private struct ExploreView: View {
                 locationManager.startUpdating()
             }
         }
+    }
+}
+
+private enum SavingsMode: String, CaseIterable, Identifiable {
+    case map = "지도"
+    case list = "리스트"
+
+    var id: String { rawValue }
+}
+
+private struct SavingsView: View {
+    @State private var mode: SavingsMode = .map
+
+    var body: some View {
+        VStack(spacing: 0) {
+            VStack(alignment: .leading, spacing: 10) {
+                HStack {
+                    VStack(alignment: .leading, spacing: 3) {
+                        Text("절약")
+                            .font(.title3.weight(.heavy))
+                            .foregroundStyle(.white)
+                        Text("지도와 리스트로 오늘의 지출을 낮춰요")
+                            .font(.caption.weight(.semibold))
+                            .foregroundStyle(Brand.blue100)
+                    }
+
+                    Spacer()
+                }
+
+                Picker("절약 화면", selection: $mode) {
+                    ForEach(SavingsMode.allCases) { item in
+                        Text(item.rawValue).tag(item)
+                    }
+                }
+                .pickerStyle(.segmented)
+            }
+            .padding(.horizontal, 16)
+            .padding(.top, 12)
+            .padding(.bottom, 12)
+            .background(Brand.primary.ignoresSafeArea(edges: .top))
+
+            Group {
+                switch mode {
+                case .map:
+                    MapExploreView()
+                case .list:
+                    ExploreView()
+                }
+            }
+        }
+        .background(Brand.gray50)
+    }
+}
+
+private struct HomeView: View {
+    @Binding var selectedTab: MainTab
+    @EnvironmentObject private var authManager: AuthManager
+    @EnvironmentObject private var placesViewModel: PlacesViewModel
+    @EnvironmentObject private var challengeViewModel: ChallengeViewModel
+
+    var body: some View {
+        ScrollView {
+            VStack(spacing: 12) {
+                HomeHeroCard()
+
+                HomeQuickActions(selectedTab: $selectedTab)
+
+                ChallengeSummaryCard(
+                    isSignedIn: authManager.isSignedIn,
+                    isLoading: challengeViewModel.isLoading,
+                    summary: challengeViewModel.summary,
+                    message: challengeViewModel.message,
+                    session: authManager.session,
+                    onRefresh: {
+                        guard let session = authManager.session else { return }
+                        Task {
+                            await challengeViewModel.load(session: session)
+                        }
+                    }
+                )
+
+                HomeBetaCard(
+                    title: "오늘의 절약 루틴",
+                    subtitle: "절약 탭에서 장소를 찾고, 방문 완료로 아낀 금액을 기록해보세요.",
+                    systemImage: "checklist.checked",
+                    accent: Brand.price,
+                    buttonTitle: "절약하러 가기",
+                    action: { selectedTab = .savings }
+                )
+
+                HomeBetaCard(
+                    title: "수입을 늘리는 다음 단계",
+                    subtitle: "지원금, 정책, 리워드, 부업 정보를 수입+ 탭에서 준비하고 있어요.",
+                    systemImage: "plus.circle.fill",
+                    accent: Brand.indigo,
+                    buttonTitle: "수입+ 보기",
+                    action: { selectedTab = .income }
+                )
+            }
+            .padding(14)
+            .padding(.bottom, 18)
+        }
+        .background(Brand.gray50)
+    }
+}
+
+private struct HomeHeroCard: View {
+    var body: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            HStack {
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("짠테크")
+                        .font(.largeTitle.weight(.heavy))
+                        .foregroundStyle(.white)
+                    Text("절약부터 투자까지, 1억을 향해")
+                        .font(.subheadline.weight(.bold))
+                        .foregroundStyle(Brand.blue100)
+                }
+
+                Spacer()
+
+                Image(systemName: "wonsign.circle.fill")
+                    .font(.system(size: 44, weight: .heavy))
+                    .foregroundStyle(Color(hex: "#FDE68A"))
+            }
+
+            HStack(spacing: 8) {
+                HomeMetricPill(title: "절약", value: "지출 낮추기")
+                HomeMetricPill(title: "수입+", value: "현금 흐름")
+                HomeMetricPill(title: "챌린지", value: "1억 기록")
+            }
+        }
+        .padding(18)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(
+            LinearGradient(
+                colors: [Brand.primary, Brand.primary700],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+        )
+        .clipShape(RoundedRectangle(cornerRadius: 20))
+    }
+}
+
+private struct HomeMetricPill: View {
+    let title: String
+    let value: String
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 3) {
+            Text(title)
+                .font(.caption2.weight(.heavy))
+                .foregroundStyle(Brand.blue100)
+            Text(value)
+                .font(.caption.weight(.heavy))
+                .foregroundStyle(.white)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.horizontal, 10)
+        .padding(.vertical, 9)
+        .background(.white.opacity(0.14))
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+    }
+}
+
+private struct HomeQuickActions: View {
+    @Binding var selectedTab: MainTab
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text("빠른 시작")
+                .font(.headline.weight(.heavy))
+                .foregroundStyle(Brand.gray900)
+
+            HStack(spacing: 10) {
+                HomeActionCard(
+                    title: "절약 찾기",
+                    subtitle: "지도 · 리스트",
+                    systemImage: "map.fill",
+                    color: Brand.primary,
+                    action: { selectedTab = .savings }
+                )
+
+                HomeActionCard(
+                    title: "1억 기록",
+                    subtitle: "챌린지",
+                    systemImage: "trophy.fill",
+                    color: Brand.amber,
+                    action: { selectedTab = .challenge }
+                )
+
+                HomeActionCard(
+                    title: "수입+",
+                    subtitle: "v2 준비",
+                    systemImage: "plus.circle.fill",
+                    color: Brand.indigo,
+                    action: { selectedTab = .income }
+                )
+            }
+        }
+        .padding(14)
+        .background(.white)
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .overlay(
+            RoundedRectangle(cornerRadius: 16)
+                .stroke(Brand.gray200, lineWidth: 1)
+        )
+    }
+}
+
+private struct HomeActionCard: View {
+    let title: String
+    let subtitle: String
+    let systemImage: String
+    let color: Color
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            VStack(alignment: .leading, spacing: 8) {
+                Image(systemName: systemImage)
+                    .font(.headline.weight(.heavy))
+                    .foregroundStyle(color)
+                    .frame(width: 34, height: 34)
+                    .background(color.opacity(0.10))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(title)
+                        .font(.caption.weight(.heavy))
+                        .foregroundStyle(Brand.gray900)
+                    Text(subtitle)
+                        .font(.caption2.weight(.bold))
+                        .foregroundStyle(Brand.gray500)
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(10)
+            .background(Brand.gray50)
+            .clipShape(RoundedRectangle(cornerRadius: 14))
+        }
+        .buttonStyle(.plain)
+    }
+}
+
+private struct HomeBetaCard: View {
+    let title: String
+    let subtitle: String
+    let systemImage: String
+    let accent: Color
+    let buttonTitle: String
+    let action: () -> Void
+
+    var body: some View {
+        HStack(alignment: .top, spacing: 12) {
+            Image(systemName: systemImage)
+                .font(.headline.weight(.heavy))
+                .foregroundStyle(accent)
+                .frame(width: 42, height: 42)
+                .background(accent.opacity(0.10))
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+
+            VStack(alignment: .leading, spacing: 6) {
+                Text(title)
+                    .font(.headline.weight(.heavy))
+                    .foregroundStyle(Brand.gray900)
+                Text(subtitle)
+                    .font(.caption)
+                    .foregroundStyle(Brand.gray500)
+                    .lineSpacing(2)
+
+                Button(action: action) {
+                    Text(buttonTitle)
+                        .font(.caption.weight(.heavy))
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 8)
+                        .background(accent)
+                        .clipShape(Capsule())
+                }
+                .buttonStyle(.plain)
+                .padding(.top, 2)
+            }
+
+            Spacer()
+        }
+        .padding(14)
+        .background(.white)
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .overlay(
+            RoundedRectangle(cornerRadius: 16)
+                .stroke(Brand.gray200, lineWidth: 1)
+        )
     }
 }
 
@@ -9050,10 +9344,10 @@ private struct MyMenuRow: View {
 // MARK: - Models
 
 private enum MainTab: Hashable {
-    case explore
-    case map
-    case youth
-    case flea
+    case home
+    case savings
+    case income
+    case challenge
     case my
 }
 
