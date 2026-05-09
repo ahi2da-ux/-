@@ -3913,7 +3913,7 @@ private struct PlaceDetailView: View {
             }
         }
         .sheet(isPresented: $isShowingShareSheet) {
-            ShareSheet(items: ["[짠테크맵] \(place.name) — \(place.kind) · 최저 \(place.priceText)\n\(place.address)"])
+            ShareSheet(items: ["[짠테크] \(place.name) — \(place.kind) · 최저 \(place.priceText)\n\(place.address)"])
                 .presentationDetents([.medium])
         }
         .sheet(isPresented: $isShowingVisitSavingSheet) {

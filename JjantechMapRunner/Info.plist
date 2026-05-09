@@ -5,7 +5,7 @@
     <key>CFBundleDevelopmentRegion</key>
     <string>ko</string>
     <key>CFBundleDisplayName</key>
-    <string>짠테크맵</string>
+    <string>짠테크</string>
     <key>CFBundleExecutable</key>
     <string>JjantechMap</string>
     <key>CFBundleIdentifier</key>
@@ -13,7 +13,7 @@
     <key>CFBundleInfoDictionaryVersion</key>
     <string>6.0</string>
     <key>CFBundleName</key>
-    <string>JjantechMap</string>
+    <string>짠테크</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
