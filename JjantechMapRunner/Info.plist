@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleDevelopmentRegion</key>
+    <string>ko</string>
+    <key>CFBundleDisplayName</key>
+    <string>짠테크맵</string>
+    <key>CFBundleExecutable</key>
+    <string>JjantechMap</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.local.jjantechmap.runner</string>
+    <key>CFBundleInfoDictionaryVersion</key>
+    <string>6.0</string>
+    <key>CFBundleName</key>
+    <string>JjantechMap</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleURLName</key>
+            <string>com.local.jjantechmap.runner</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>jjantechmap</string>
+            </array>
+        </dict>
+    </array>
+    <key>LSRequiresIPhoneOS</key>
+    <true/>
+    <key>MinimumOSVersion</key>
+    <string>17.0</string>
+    <key>NMFNcpKeyId</key>
+    <string>ojhhr6fibp</string>
+    <key>SupabaseURL</key>
+    <string>https://wfznjcfurcsqdsanmmbr.supabase.co</string>
+    <key>SupabasePublishableKey</key>
+    <string>sb_publishable_E4F4rfB1rwMfY0zJ7yBjRw_RtKg3rWu</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>내 주변의 저렴한 장소를 지도에서 보여주기 위해 현재 위치를 사용합니다.</string>
+    <key>NSCameraUsageDescription</key>
+    <string>가격 제보 시 영수증 또는 메뉴판을 촬영하기 위해 카메라를 사용합니다.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>가격 제보 시 영수증 또는 메뉴판 사진을 첨부하기 위해 사진을 불러옵니다.</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>촬영한 인증 사진을 사진앱에 저장하기 위해 권한을 사용합니다.</string>
+    <key>UILaunchScreen</key>
+    <dict/>
+    <key>UISupportedInterfaceOrientations</key>
+    <array>
+        <string>UIInterfaceOrientationPortrait</string>
+    </array>
+</dict>
+</plist>

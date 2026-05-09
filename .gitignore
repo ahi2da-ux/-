@@ -1,0 +1,21 @@
+# 짠테크맵 로컬 보안 파일
+.env
+.env.*
+*.env
+secrets.plist
+Secrets.plist
+SupabaseSecrets.plist
+
+# macOS / 로컬 도구
+.DS_Store
+.claude/
+
+# Xcode 로컬 빌드 산출물
+DerivedData/
+build/
+JjantechMapRunner/build/
+JjantechMapRunner/DerivedData/
+JjantechMapRunner/SourcePackages/
+*.xcuserstate
+*.xcuserdata/
+xcuserdata/
